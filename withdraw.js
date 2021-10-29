@@ -8,8 +8,19 @@ function Withdraw(){
 
   function handleDeposit(){
     let newTotal= Number(ctx.users[0].balance)-Number(amount);
+    console.log(newTotal);
+    if(newTotal<0)
+    {
+      alert("Withdraw cannot exceed the account balance");
+      return;
+    }
+    if(isNaN(newTotal))
+    {
+      alert(`${amount} is not a valid Number. Please! enter valid number`);
+      return;
+    }
     setnewBalance(newTotal);
-    console.log(amount,ctx.users[0], (Number(amount)+ Number(ctx.users[0].balance)));
+    
    
     let user= ctx.users[0];
     user.balance=newTotal;

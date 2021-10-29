@@ -12,6 +12,12 @@ function CreateAccount(){
         setTimeout(() => setStatus(''),3000);
         return false;
       }
+      if(label=="password" && field.length<8)
+      {
+        setStatus(`Error ${label} must be at least 8 characters`);
+        setTimeout(() => setStatus(''),3000);
+        return false;
+      }
       return true;
   }
 
@@ -23,6 +29,7 @@ function CreateAccount(){
     ctx.users.push({name,email,password,balance:100});
     setShow(false);
   }    
+  
 
   function clearForm(){
     setName('');
@@ -44,12 +51,12 @@ function CreateAccount(){
               <input type="input" className="form-control" id="email" placeholder="Enter email" value={email} onChange={e => setEmail(e.currentTarget.value)}/><br/>
               Password<br/>
               <input type="password" className="form-control" id="password" placeholder="Enter password" value={password} onChange={e => setPassword(e.currentTarget.value)}/><br/>
-              <button type="submit" className="btn btn-light" onClick={handleCreate}>Create Account</button>
+              <button type="submit" className="btn btn-light" onClick={handleCreate} >Create Account</button>
               </>
             ):(
               <>
               <h5>Success</h5>
-              <button type="submit" className="btn btn-light" onClick={clearForm}>Add another account</button>
+               <button  type="submit" className="btn btn-light" onClick={clearForm} >Add another account</button>
               </>
             )}
     />
